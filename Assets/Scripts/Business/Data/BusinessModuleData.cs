@@ -1,4 +1,5 @@
 using UnityEngine;
+using BusinessManager.Core.UI;
 
 namespace BusinessManager.Core
 {
@@ -9,6 +10,10 @@ namespace BusinessManager.Core
 
         [field: Header("Business Module Settings")]
         [field: SerializeField] public BusinessConfigData[] Businesses { get; private set; }
+
+        [field: Header("Business UI")]
+        [field: SerializeField] public BusinessWindowView BusinessWindowPrefab { get; private set; }
+        [field: SerializeField] public BusinessView BusinessViewPrefab { get; private set; }
 
 #if UNITY_EDITOR
         private void OnValidate()

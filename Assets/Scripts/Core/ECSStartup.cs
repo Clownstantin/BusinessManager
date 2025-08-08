@@ -5,6 +5,8 @@ namespace BusinessManager.Core
 {
     public class ECSStartup : MonoBehaviour
     {
+        [Header("Context")]
+        [SerializeField] private SceneContext _sceneContext;
         [Header("Modules")]
         [SerializeField] private ModuleInfo[] _modules;
 
@@ -20,7 +22,7 @@ namespace BusinessManager.Core
                 return;
 
             _world = new EcsWorld();
-            _systems = new EcsSystems(_world);
+            _systems = new EcsSystems(_world, _sceneContext);
 
 #if UNITY_EDITOR
             _editorSystems = new EcsSystems(_world);

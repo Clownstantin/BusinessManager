@@ -47,11 +47,19 @@ MonoBehaviour:
   _modules:
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
+      rid: 7709770230250864653
+    <ModuleData>k__BackingField: {fileID: 0}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
       rid: 7709770230250864642
     <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
-      rid: 7709770230250864644
+      rid: 7709770230250864648
+    <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770230250864647
     <ModuleData>k__BackingField: {fileID: 0}
   references:
     version: 2
@@ -59,6 +67,12 @@ MonoBehaviour:
     - rid: 7709770230250864642
       type: {class: BusinessModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
       data: 
-    - rid: 7709770230250864644
-      type: {class: BusinessUIModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
+    - rid: 7709770230250864647
+      type: {class: SaveModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
+      data: 
+    - rid: 7709770230250864648
+      type: {class: BusinessUIModule, ns: BusinessManager.Core.UI, asm: Assembly-CSharp}
+      data: 
+    - rid: 7709770230250864653
+      type: {class: ResourceModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
       data: 
