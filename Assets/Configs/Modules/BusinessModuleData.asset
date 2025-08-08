@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbecc297c5998f1409284c9686e5b382, type: 3}
+  m_Name: BusinessModuleData
+  m_EditorClassIdentifier: 
+  <Businesses>k__BackingField:
+  - <NamesData>k__BackingField: {fileID: 11400000, guid: 2a2a918ec42b4884998f6af45c841a0f, type: 2}
+    <BaseCost>k__BackingField: 3
+    <BaseIncome>k__BackingField: 3
+    <IncomeDelay>k__BackingField: 3
+    <Enhancements>k__BackingField:
+    - <Cost>k__BackingField: 50
+      <MultiplyFactor>k__BackingField: 1.5
+    - <Cost>k__BackingField: 400
+      <MultiplyFactor>k__BackingField: 2
+  - <NamesData>k__BackingField: {fileID: 11400000, guid: 16612ab43344eaa4aa02f1fd5f826b22, type: 2}
+    <BaseCost>k__BackingField: 40
+    <BaseIncome>k__BackingField: 40
+    <IncomeDelay>k__BackingField: 6
+    <Enhancements>k__BackingField:
+    - <Cost>k__BackingField: 1200
+      <MultiplyFactor>k__BackingField: 2
+    - <Cost>k__BackingField: 4000
+      <MultiplyFactor>k__BackingField: 4
+  - <NamesData>k__BackingField: {fileID: 11400000, guid: 765d30a6f3bbea745b694ce7325979f2, type: 2}
+    <BaseCost>k__BackingField: 200
+    <BaseIncome>k__BackingField: 200
+    <IncomeDelay>k__BackingField: 10
+    <Enhancements>k__BackingField:
+    - <Cost>k__BackingField: 6000
+      <MultiplyFactor>k__BackingField: 2
+    - <Cost>k__BackingField: 20000
+      <MultiplyFactor>k__BackingField: 2.5
+  - <NamesData>k__BackingField: {fileID: 11400000, guid: 379e069e10cf4734dab1bdd4a5209b6a, type: 2}
+    <BaseCost>k__BackingField: 1000
+    <BaseIncome>k__BackingField: 1000
+    <IncomeDelay>k__BackingField: 17
+    <Enhancements>k__BackingField:
+    - <Cost>k__BackingField: 15000
+      <MultiplyFactor>k__BackingField: 2
+    - <Cost>k__BackingField: 50000
+      <MultiplyFactor>k__BackingField: 4
+  - <NamesData>k__BackingField: {fileID: 11400000, guid: df93d59d401ae18489a33984678acb87, type: 2}
+    <BaseCost>k__BackingField: 5000
+    <BaseIncome>k__BackingField: 5000
+    <IncomeDelay>k__BackingField: 30
+    <Enhancements>k__BackingField:
+    - <Cost>k__BackingField: 100000
+      <MultiplyFactor>k__BackingField: 4
+    - <Cost>k__BackingField: 500000
+      <MultiplyFactor>k__BackingField: 6

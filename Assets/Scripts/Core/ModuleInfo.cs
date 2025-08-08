@@ -9,6 +9,7 @@ namespace BusinessManager.Core
         [field: SerializeReference] public IECSModule ModuleInstance { get; private set; }
         [field: SerializeField] public ScriptableObject ModuleData { get; private set; }
 
+#if UNITY_EDITOR
         public void ValidateDataType()
         {
             if (ModuleInstance == null)
@@ -21,5 +22,6 @@ namespace BusinessManager.Core
             if (ModuleData != null && expected != null && ModuleData.GetType() != expected)
                 ModuleData = null;
         }
+#endif
     }
 }

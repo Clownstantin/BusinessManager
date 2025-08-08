@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace BusinessManager.Core
 {
-    public class LogicModule : IECSModule
+    public class BusinessModule : IECSModule
     {
-        public System.Type ModuleDataType => typeof(LogicModuleData);
+        public System.Type ModuleDataType => typeof(BusinessModuleData);
 
         public void Init(IEcsSystems systems, ScriptableObject data = null)
         {
-            var logicData = data as LogicModuleData;
+            var logicData = data as BusinessModuleData;
             systems.Add(new TestSystem());
         }
     }

@@ -47,18 +47,18 @@ MonoBehaviour:
   _modules:
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
-      rid: 7709770213304565842
+      rid: 7709770230250864642
     <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
-      rid: 7709770213304565843
+      rid: 7709770230250864644
     <ModuleData>k__BackingField: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 7709770213304565842
-      type: {class: LogicModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
+    - rid: 7709770230250864642
+      type: {class: BusinessModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
       data: 
-    - rid: 7709770213304565843
-      type: {class: UIModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
+    - rid: 7709770230250864644
+      type: {class: BusinessUIModule, ns: BusinessManager.Core, asm: Assembly-CSharp}
       data: 

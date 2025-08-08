@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BusinessManager.Core
 {
-    public class UIModule : IECSModule
+    public class BusinessUIModule : IECSModule
     {
         public System.Type ModuleDataType => null;
 
