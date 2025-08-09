@@ -14,7 +14,6 @@ namespace Core
             if (_config == null || _config.Businesses == null || _config.Businesses.Length == 0)
                 return;
 
-            EcsWorld world = systems.GetWorld();
             PoolContainer pool = systems.GetShared<SharedData>().PoolContainer;
 
             var businesses = _config.Businesses;
@@ -22,8 +21,7 @@ namespace Core
             {
                 var cfg = businesses[i];
 
-                int entity = world.NewEntity();
-                ref Business business = ref pool.Business.Add(entity);
+                ref Business business = ref pool.Business.NewEntity(out _);
 
                 business.Index = i;
                 business.Level = 0;

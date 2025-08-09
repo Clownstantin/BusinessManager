@@ -7,15 +7,13 @@ namespace Core
         public void Init(IEcsSystems systems)
         {
             EcsWorld world = systems.GetWorld();
-            var balancePool = world.GetPool<Balance>();
+            PoolContainer pool = systems.GetShared<SharedData>().PoolContainer;
             var balanceFilter = world.Filter<Balance>().End();
 
             foreach (int _ in balanceFilter)
                 return;
 
-            int entity = world.NewEntity();
-            ref Balance balance = ref balancePool.Add(entity);
-            balance.Amount = 0f;
+            pool.Balance.NewEntity(out _);
         }
     }
 }

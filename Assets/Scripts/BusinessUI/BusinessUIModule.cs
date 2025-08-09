@@ -10,8 +10,8 @@ namespace Core.UI
         public void Init(IEcsSystems systems, ScriptableObject data = null)
         {
             var config = data as BusinessModuleData;
-            systems.Add(new BusinessListBootstrapSystem(config));
-            systems.Add(new BusinessHudUpdateSystem(config));
+            systems.Add(new BusinessListBootstrapSystem(config))
+                   .Add(new BusinessHudUpdateSystem(config));
         }
     }
 }

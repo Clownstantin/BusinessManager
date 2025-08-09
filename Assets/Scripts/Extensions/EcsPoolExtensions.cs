@@ -17,5 +17,12 @@ namespace Core
             if (condition)
                 pool.Add(entity);
         }
+
+        public static ref T NewEntity<T>(this EcsPool<T> pool, out int entity)
+        where T : struct
+        {
+            entity = pool.GetWorld().NewEntity();
+            return ref pool.Add(entity);
+        }
     }
 }

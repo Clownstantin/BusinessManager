@@ -11,11 +11,11 @@ namespace Core
         {
             var businessData = data as BusinessModuleData;
 
-            systems.Add(new CreateBusinessSystem(businessData));
-            systems.Add(new IncomeProgressSystem());
-            systems.Add(new ApplyPayoutSystem());
-            systems.Add(new BuyLevelSystem());
-            systems.Add(new BuyEnhancementSystem(businessData));
+            systems.Add(new CreateBusinessSystem(businessData))
+                   .Add(new IncomeProgressSystem())
+                   .Add(new ApplyPayoutSystem())
+                   .Add(new BuyLevelSystem())
+                   .Add(new BuyEnhancementSystem(businessData));
         }
     }
 }
