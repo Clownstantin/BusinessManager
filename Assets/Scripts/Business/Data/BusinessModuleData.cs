@@ -1,7 +1,7 @@
+using Core.UI;
 using UnityEngine;
-using BusinessManager.Core.UI;
 
-namespace BusinessManager.Core
+namespace Core
 {
     [CreateAssetMenu(fileName = FileName, menuName = Strings.ModulePath + FileName)]
     public class BusinessModuleData : ScriptableObject

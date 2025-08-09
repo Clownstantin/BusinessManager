@@ -1,4 +1,4 @@
-﻿namespace BusinessManager.Core
+﻿namespace Core
 {
     public partial class Strings
     {

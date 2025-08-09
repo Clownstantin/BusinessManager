@@ -2,7 +2,7 @@ using System;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public class SaveModule : IECSModule
     {

@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace BusinessManager.Core.UI
+namespace Core.UI
 {
     public class BusinessUIModule : IECSModule
     {

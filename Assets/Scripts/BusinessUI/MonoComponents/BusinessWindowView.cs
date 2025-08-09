@@ -1,11 +1,11 @@
+using TMPro;
 using UnityEngine;
 
-namespace BusinessManager.Core.UI
+namespace Core.UI
 {
     public sealed class BusinessWindowView : MonoBehaviour
     {
-        [SerializeField] private Transform _listContainer;
-
-        public Transform ListContainer => _listContainer;
+        [field: SerializeField] public Transform ListContainer { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI BalanceText { get; private set; }
     }
 }

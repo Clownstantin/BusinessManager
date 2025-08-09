@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public class ECSStartup : MonoBehaviour
     {
@@ -22,7 +22,8 @@ namespace BusinessManager.Core
                 return;
 
             _world = new EcsWorld();
-            _systems = new EcsSystems(_world, _sceneContext);
+            SharedData sharedData = new(new PoolContainer(_world), _sceneContext);
+            _systems = new EcsSystems(_world, sharedData);
 
 #if UNITY_EDITOR
             _editorSystems = new EcsSystems(_world);

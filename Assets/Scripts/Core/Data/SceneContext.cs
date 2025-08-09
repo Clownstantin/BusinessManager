@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     [System.Serializable]
     public class SceneContext

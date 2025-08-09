@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     [CreateAssetMenu(fileName = FileName, menuName = Strings.BusinessPath + FileName)]
     public class BusinessNamesData : ScriptableObject

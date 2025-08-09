@@ -1,4 +1,6 @@
-namespace BusinessManager.Core
+using Leopotam.EcsLite;
+
+namespace Core
 {
     public struct Business
     {
@@ -17,5 +19,12 @@ namespace BusinessManager.Core
 
         // Bit mask of purchased enhancements (bit i -> enhancement i purchased)
         public int PurchasedEnhancementsMask;
+    }
+
+    public partial class PoolContainer
+    {
+        private EcsPool<Business> _business;
+
+        public EcsPool<Business> Business => _business ??= _world.GetPool<Business>();
     }
 }

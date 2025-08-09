@@ -1,8 +1,8 @@
 using Leopotam.EcsLite;
 
-namespace BusinessManager.Core.UI
+namespace Core
 {
-    public static class EcsExtentions
+    public static class EcsRequestExtensions
     {
         public static void CreateRequest<T>(this EcsWorld world, in T request) where T : struct
         {

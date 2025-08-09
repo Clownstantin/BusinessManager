@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public sealed class CreateBusinessSystem : IEcsInitSystem
     {
@@ -15,7 +15,7 @@ namespace BusinessManager.Core
                 return;
 
             EcsWorld world = systems.GetWorld();
-            EcsPool<Business> businessPool = world.GetPool<Business>();
+            PoolContainer pool = systems.GetShared<SharedData>().PoolContainer;
 
             var businesses = _config.Businesses;
             for (int i = 0; i < businesses.Length; i++)
@@ -23,7 +23,7 @@ namespace BusinessManager.Core
                 var cfg = businesses[i];
 
                 int entity = world.NewEntity();
-                ref Business business = ref businessPool.Add(entity);
+                ref Business business = ref pool.Business.Add(entity);
 
                 business.Index = i;
                 business.Level = 0;

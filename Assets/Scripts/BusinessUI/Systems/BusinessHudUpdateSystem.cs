@@ -1,14 +1,13 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace BusinessManager.Core.UI
+namespace Core.UI
 {
     public sealed class BusinessHudUpdateSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _world;
         private EcsFilter _businessFilter;
-        private EcsPool<Business> _businessPool;
-        private EcsPool<MonoLink<BusinessView>> _linkPool;
+        private PoolContainer _pool;
 
         private BusinessModuleData _config;
 
@@ -18,18 +17,20 @@ namespace BusinessManager.Core.UI
         {
             _world = systems.GetWorld();
             _businessFilter = _world.Filter<Business>().End();
-            _businessPool = _world.GetPool<Business>();
-            _linkPool = _world.GetPool<MonoLink<BusinessView>>();
+            _pool = systems.GetShared<SharedData>().PoolContainer;
         }
 
         public void Run(IEcsSystems systems)
         {
             foreach (int e in _businessFilter)
             {
-                ref var b = ref _businessPool.Get(e);
-                if (!_linkPool.Has(e)) continue;
-                var view = _linkPool.Get(e).Value;
-                if (view == null) continue;
+                ref var b = ref _pool.Business.Get(e);
+                if (!_pool.BusinessView.Has(e))
+                    continue;
+
+                var view = _pool.BusinessView.Get(e).Value;
+                if (view == null)
+                    continue;
 
                 float multiplier = 1f + Mathf.Max(0f, b.EnhancementsMultiplierSum);
                 float income = b.Level * b.BaseIncome * multiplier;

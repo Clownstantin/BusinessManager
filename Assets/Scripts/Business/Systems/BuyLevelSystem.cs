@@ -1,7 +1,6 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public sealed class BuyLevelSystem : IEcsInitSystem, IEcsRunSystem
     {
@@ -9,16 +8,12 @@ namespace BusinessManager.Core
         private EcsFilter _reqFilter;
         private EcsFilter _businessFilter;
         private EcsFilter _balanceFilter;
-        private EcsPool<BuyLevelRequest> _reqPool;
-        private EcsPool<Business> _businessPool;
-        private EcsPool<Balance> _balancePool;
+        private PoolContainer _pool;
 
         public void Init(IEcsSystems systems)
         {
             _world = systems.GetWorld();
-            _reqPool = _world.GetPool<BuyLevelRequest>();
-            _businessPool = _world.GetPool<Business>();
-            _balancePool = _world.GetPool<Balance>();
+            _pool = systems.GetShared<SharedData>().PoolContainer;
             _reqFilter = _world.Filter<BuyLevelRequest>().End();
             _businessFilter = _world.Filter<Business>().End();
             _balanceFilter = _world.Filter<Balance>().End();
@@ -31,21 +26,21 @@ namespace BusinessManager.Core
             if (balanceEntity == -1)
                 return; // no balance yet
 
-            ref Balance balance = ref _balancePool.Get(balanceEntity);
+            ref Balance balance = ref _pool.Balance.Get(balanceEntity);
 
             foreach (int reqEntity in _reqFilter)
             {
-                int index = _reqPool.Get(reqEntity).BusinessIndex;
+                int index = _pool.BuyLevelRequest.Get(reqEntity).BusinessIndex;
 
                 // Find business by index (linear; for small N ok; otherwise map index->entity)
                 int businessEntity = FindBusinessByIndex(index);
                 if (businessEntity == -1)
                 {
-                    _reqPool.Del(reqEntity);
+                    _pool.BuyLevelRequest.Del(reqEntity);
                     continue;
                 }
 
-                ref Business business = ref _businessPool.Get(businessEntity);
+                ref Business business = ref _pool.Business.Get(businessEntity);
                 float cost = (business.Level + 1) * business.BaseCost;
 
                 if (balance.Amount >= cost)
@@ -54,7 +49,7 @@ namespace BusinessManager.Core
                     business.Level++;
                 }
 
-                _reqPool.Del(reqEntity);
+                _pool.BuyLevelRequest.Del(reqEntity);
             }
         }
 
@@ -62,12 +57,10 @@ namespace BusinessManager.Core
         {
             foreach (int e in _businessFilter)
             {
-                if (_businessPool.Get(e).Index == index)
+                if (_pool.Business.Get(e).Index == index)
                     return e;
             }
             return -1;
         }
     }
 }
-
-

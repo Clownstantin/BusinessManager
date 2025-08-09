@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace BusinessManager.Core.Editor
+namespace Core.Editor
 {
     [CustomPropertyDrawer(typeof(ModuleInfo))]
     public class ModuleInfoDrawer : PropertyDrawer

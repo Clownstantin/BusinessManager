@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public sealed class BuyEnhancementSystem : IEcsInitSystem, IEcsRunSystem
     {
@@ -11,18 +11,14 @@ namespace BusinessManager.Core
         private EcsFilter _reqFilter;
         private EcsFilter _businessFilter;
         private EcsFilter _balanceFilter;
-        private EcsPool<BuyEnhancementRequest> _reqPool;
-        private EcsPool<Business> _businessPool;
-        private EcsPool<Balance> _balancePool;
+        private PoolContainer _pool;
 
         public BuyEnhancementSystem(BusinessModuleData config) => _config = config;
 
         public void Init(IEcsSystems systems)
         {
             _world = systems.GetWorld();
-            _reqPool = _world.GetPool<BuyEnhancementRequest>();
-            _businessPool = _world.GetPool<Business>();
-            _balancePool = _world.GetPool<Balance>();
+            _pool = systems.GetShared<SharedData>().PoolContainer;
             _reqFilter = _world.Filter<BuyEnhancementRequest>().End();
             _businessFilter = _world.Filter<Business>().End();
             _balanceFilter = _world.Filter<Balance>().End();
@@ -38,39 +34,39 @@ namespace BusinessManager.Core
             if (balanceEntity == -1)
                 return; // no balance yet
 
-            ref Balance balance = ref _balancePool.Get(balanceEntity);
+            ref Balance balance = ref _pool.Balance.Get(balanceEntity);
 
             foreach (int reqEntity in _reqFilter)
             {
-                var req = _reqPool.Get(reqEntity);
+                var req = _pool.BuyEnhancementRequest.Get(reqEntity);
 
                 int businessEntity = FindBusinessByIndex(req.BusinessIndex);
                 if (businessEntity == -1)
                 {
-                    _reqPool.Del(reqEntity);
+                    _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue;
                 }
 
-                ref Business business = ref _businessPool.Get(businessEntity);
+                ref Business business = ref _pool.Business.Get(businessEntity);
 
                 // bounds and already purchased check
                 if (req.EnhancementIndex < 0 || req.EnhancementIndex >= _config.Businesses.Length)
                 {
-                    _reqPool.Del(reqEntity);
+                    _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue;
                 }
 
                 var enhancements = _config.Businesses[business.Index].Enhancements;
                 if (req.EnhancementIndex >= enhancements.Length)
                 {
-                    _reqPool.Del(reqEntity);
+                    _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue;
                 }
 
                 int mask = 1 << req.EnhancementIndex;
                 if ((business.PurchasedEnhancementsMask & mask) != 0)
                 {
-                    _reqPool.Del(reqEntity);
+                    _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue; // already purchased
                 }
 
@@ -84,7 +80,7 @@ namespace BusinessManager.Core
                     business.EnhancementsMultiplierSum += addMultiplier;
                 }
 
-                _reqPool.Del(reqEntity);
+                _pool.BuyEnhancementRequest.Del(reqEntity);
             }
         }
 
@@ -92,7 +88,7 @@ namespace BusinessManager.Core
         {
             foreach (int e in _businessFilter)
             {
-                if (_businessPool.Get(e).Index == index)
+                if (_pool.Business.Get(e).Index == index)
                     return e;
             }
             return -1;

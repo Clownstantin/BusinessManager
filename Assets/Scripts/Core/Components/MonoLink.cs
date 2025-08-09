@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public struct MonoLink<T> where T : Object
     {

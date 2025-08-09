@@ -1,6 +1,6 @@
 using Leopotam.EcsLite;
 
-namespace BusinessManager.Core
+namespace Core
 {
     public sealed class CreateBalanceSystem : IEcsInitSystem
     {

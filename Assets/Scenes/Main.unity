@@ -652,75 +652,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863593278}
   m_CullTransparentMesh: 1
---- !u!1001 &1532526193187713116
-PrefabInstance:
+--- !u!1 &532193381695427578
+GameObject:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5159349305623807843}
+  - component: {fileID: 7469602396117983562}
+  m_Layer: 0
+  m_Name: '[ECS]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5159349305623807843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532193381695427578}
   serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1307762962834547622, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_Name
-      value: '[ECS]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5970946996049213247, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8281552084406079766, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: _sceneContext.<MainCamera>k__BackingField
-      value: 
-      objectReference: {fileID: 519420031}
-    - target: {fileID: 8281552084406079766, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
-      propertyPath: _sceneContext.<MainCanvas>k__BackingField
-      value: 
-      objectReference: {fileID: 1358808581}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a9e81d1733231f046b2e139b3f9a55f9, type: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7469602396117983562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532193381695427578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cde0884ef1787f4781fe4ebf8c5efe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneContext:
+    <MainCamera>k__BackingField: {fileID: 519420031}
+    <MainCanvas>k__BackingField: {fileID: 1358808581}
+  _modules:
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770251048583170
+    <ModuleData>k__BackingField: {fileID: 0}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770251048583172
+    <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770251048583173
+    <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770251048583174
+    <ModuleData>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7709770251048583170
+      type: {class: ResourceModule, ns: Core, asm: Assembly-CSharp}
+      data: 
+    - rid: 7709770251048583172
+      type: {class: BusinessModule, ns: Core, asm: Assembly-CSharp}
+      data: 
+    - rid: 7709770251048583173
+      type: {class: BusinessUIModule, ns: Core.UI, asm: Assembly-CSharp}
+      data: 
+    - rid: 7709770251048583174
+      type: {class: SaveModule, ns: Core, asm: Assembly-CSharp}
+      data: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 201656639}
-  - {fileID: 1532526193187713116}
+  - {fileID: 5159349305623807843}
   - {fileID: 550506069}
