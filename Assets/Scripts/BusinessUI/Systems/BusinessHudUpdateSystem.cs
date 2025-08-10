@@ -56,23 +56,23 @@ namespace Core.UI
                     view.BuyLevelButtonText.text = $"LVL UP\n{GetPriceText(levelPrice)}";
 
                     BusinessConfigData businessData = _config.Businesses[business.Index];
-                    EnhancementConfigData[] enh = businessData.Enhancements;
+                    EnhancementConfigData[] enhancements = businessData.Enhancements;
                     string[] enhancementNames = businessData.NamesData.Enhancements;
 
-                    if (enh.Length == enhancementNames.Length)
-                    {
-                        view.FirstEnhanceButtonText.text = GetEnhancementText(enh[0], enhancementNames[0]);
-                        view.SecondEnhanceButtonText.text = GetEnhancementText(enh[1], enhancementNames[1]);
-                    }
-
-                    bool hasFirst = enh.Length > 0;
-                    bool hasSecond = enh.Length > 1;
+                    bool hasFirst = enhancements.Length > 0;
+                    bool hasSecond = enhancements.Length > 1;
 
                     bool firstPurchased = (business.PurchasedEnhancementsMask & (1 << 0)) != 0;
                     bool secondPurchased = (business.PurchasedEnhancementsMask & (1 << 1)) != 0;
 
-                    view.FirstEnhancementButton.interactable = hasFirst && !firstPurchased;
-                    view.SecondEnhancementButton.interactable = hasSecond && !secondPurchased;
+                    if (enhancements.Length == enhancementNames.Length)
+                    {
+                        view.FirstEnhanceButtonText.text = GetEnhancementText(enhancements[0], enhancementNames[0], firstPurchased);
+                        view.SecondEnhanceButtonText.text = GetEnhancementText(enhancements[1], enhancementNames[1], secondPurchased);
+
+                        view.FirstEnhancementButton.interactable = hasFirst && !firstPurchased;
+                        view.SecondEnhancementButton.interactable = hasSecond && !secondPurchased;
+                    }
 
                     break;
                 }
@@ -80,8 +80,8 @@ namespace Core.UI
 
             static string GetPriceText(in float price) => $"Цена: {price}$";
 
-            static string GetEnhancementText(in EnhancementConfigData enh, string enhancementName)
-            => $"{enhancementName}\nДоход: +{enh.MultiplyFactor * 100}%\n {GetPriceText(enh.Cost)}";
+            static string GetEnhancementText(in EnhancementConfigData enh, string enhancementName, bool isPurchased)
+            => $"{enhancementName}\nДоход: +{enh.MultiplyFactor * 100}%\n {(isPurchased ? "Куплено" : GetPriceText(enh.Cost))}";
         }
     }
 }
