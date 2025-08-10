@@ -10,7 +10,10 @@ namespace Core.UI
 
         public void Init(IEcsSystems systems, ScriptableObject data = null)
         {
-            systems.Add(new LinkBalanceTextSystem());
+            systems.Add(new LinkBalanceTextSystem())
+                   .Add(new UpdateBalanceTextSystem())
+                   .DelHere<PayoutEvent>()
+                   .DelHere<BalanceChangedEvent>();
         }
     }
 }

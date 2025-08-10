@@ -9,7 +9,7 @@ namespace Core
         private EcsFilter _payoutFilter;
         private EcsFilter _balanceFilter;
         private PoolContainer _pool;
-        private int _balanceEntity = -1; // кэшируем singleton
+        private int _balanceEntity;
 
         public void Init(IEcsSystems systems)
         {
@@ -18,24 +18,26 @@ namespace Core
             _payoutFilter = _world.Filter<PayoutEvent>().End();
             _balanceFilter = _world.Filter<Balance>().End();
 
-            foreach (var e in _balanceFilter)
-            {
-                _balanceEntity = e;
-                break;
-            }
+            _balanceEntity = _balanceFilter.GetFirstEntity();
         }
 
         public void Run(IEcsSystems systems)
         {
-            if (_balanceEntity == -1)
+            if (_balanceEntity == Index.Default)
                 return;
 
-            ref var balance = ref _pool.Balance.Get(_balanceEntity);
-            foreach (var e in _payoutFilter)
+            ref Balance balance = ref _pool.Balance.Get(_balanceEntity);
+
+            bool changed = false;
+            foreach (int eventEntity in _payoutFilter)
             {
-                balance.Amount = Mathf.Max(0f, balance.Amount + _pool.PayoutEvent.Get(e).Amount);
-                _pool.PayoutEvent.Del(e);
+                float amount = _pool.PayoutEvent.Get(eventEntity).Amount;
+                balance.Amount = Mathf.Max(0f, balance.Amount + amount);
+                changed = true;
             }
+
+            if (changed)
+                _pool.BalanceChangedEvent.NewEntity(out _);
         }
     }
 }

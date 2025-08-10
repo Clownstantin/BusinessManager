@@ -626,24 +626,24 @@ MonoBehaviour:
   _modules:
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
-      rid: 7709770251048583170
-    <ModuleData>k__BackingField: {fileID: 0}
-  - <IsEnabled>k__BackingField: 1
-    <ModuleInstance>k__BackingField:
       rid: 7709770251048583172
     <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770251048583170
+    <ModuleData>k__BackingField: {fileID: 0}
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
       rid: 7709770251048583175
     <ModuleData>k__BackingField: {fileID: 11400000, guid: 7cf9c887286bd7542a70347fa40976b2, type: 2}
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
-      rid: 7709770251048583176
-    <ModuleData>k__BackingField: {fileID: 0}
-  - <IsEnabled>k__BackingField: 1
-    <ModuleInstance>k__BackingField:
       rid: 7709770251048583173
     <ModuleData>k__BackingField: {fileID: 11400000, guid: 5ed7bfc2dbdce4745a845a40713c3b28, type: 2}
+  - <IsEnabled>k__BackingField: 1
+    <ModuleInstance>k__BackingField:
+      rid: 7709770251048583176
+    <ModuleData>k__BackingField: {fileID: 0}
   - <IsEnabled>k__BackingField: 1
     <ModuleInstance>k__BackingField:
       rid: 7709770251048583177

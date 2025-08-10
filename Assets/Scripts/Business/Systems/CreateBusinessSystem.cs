@@ -15,12 +15,11 @@ namespace Core
                 return;
 
             PoolContainer pool = systems.GetShared<SharedData>().PoolContainer;
+            BusinessConfigData[] businesses = _config.Businesses;
 
-            var businesses = _config.Businesses;
             for (int i = 0; i < businesses.Length; i++)
             {
-                var cfg = businesses[i];
-
+                BusinessConfigData cfg = businesses[i];
                 ref Business business = ref pool.Business.NewEntity(out _);
 
                 business.Index = i;
@@ -28,7 +27,7 @@ namespace Core
                 business.BaseCost = cfg.BaseCost;
                 business.BaseIncome = cfg.BaseIncome;
                 business.IncomeDelay = Mathf.Max(0.0001f, cfg.IncomeDelay);
-                business.Progress01 = 0f;
+                business.Progress = 0f;
                 business.EnhancementsMultiplierSum = 0f;
                 business.PurchasedEnhancementsMask = 0;
             }

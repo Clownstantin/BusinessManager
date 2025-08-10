@@ -11,7 +11,8 @@ namespace Core.UI
         {
             var config = data as BusinessModuleData;
             systems.Add(new BusinessListBootstrapSystem(config))
-                   .Add(new BusinessHudUpdateSystem(config));
+                   .Add(new BusinessHudUpdateSystem(config))
+                   .DelHere<BusinessViewRefreshEvent>();
         }
     }
 }

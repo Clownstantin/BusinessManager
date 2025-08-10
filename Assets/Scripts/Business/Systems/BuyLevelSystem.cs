@@ -1,5 +1,4 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Core
 {
@@ -22,36 +21,31 @@ namespace Core
 
         public void Run(IEcsSystems systems)
         {
-            int balanceEntity = -1;
-            foreach (var e in _balanceFilter) { balanceEntity = e; break; }
-            if (balanceEntity == -1)
-                return; // no balance yet
+            int balanceEntity = _balanceFilter.GetFirstEntity();
+            if (balanceEntity == Index.Default)
+                return;
 
             ref Balance balance = ref _pool.Balance.Get(balanceEntity);
 
             foreach (int reqEntity in _reqFilter)
             {
                 int index = _pool.BuyLevelRequest.Get(reqEntity).BusinessIndex;
-
-                // Find business by index (linear; for small N ok; otherwise map index->entity)
                 int businessEntity = FindBusinessByIndex(index);
-                Debug.Log($"BuyLevel {businessEntity}");
-                if (businessEntity == -1)
-                {
-                    _pool.BuyLevelRequest.Del(reqEntity);
+                if (businessEntity == Index.Default)
                     continue;
-                }
 
                 ref Business business = ref _pool.Business.Get(businessEntity);
                 float cost = (business.Level + 1) * business.BaseCost;
 
                 if (balance.Amount >= cost)
                 {
+                    _pool.Bought.ConditionAdd(businessEntity, business.Level == 0);
+
                     balance.Amount -= cost;
                     business.Level++;
+                    _pool.BalanceChangedEvent.NewEntity(out _);
+                    _pool.BusinessViewRefreshEvent.NewEntity(out _).BusinessIndex = business.Index;
                 }
-
-                _pool.BuyLevelRequest.Del(reqEntity);
             }
         }
 
@@ -62,7 +56,7 @@ namespace Core
                 if (_pool.Business.Get(e).Index == index)
                     return e;
             }
-            return -1;
+            return Index.Default;
         }
     }
 }

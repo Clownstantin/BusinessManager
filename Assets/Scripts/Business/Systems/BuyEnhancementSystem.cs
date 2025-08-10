@@ -20,7 +20,7 @@ namespace Core
             _world = systems.GetWorld();
             _pool = systems.GetShared<SharedData>().PoolContainer;
             _reqFilter = _world.Filter<BuyEnhancementRequest>().End();
-            _businessFilter = _world.Filter<Business>().End();
+            _businessFilter = _world.Filter<Business>().Inc<Bought>().End();
             _balanceFilter = _world.Filter<Balance>().End();
         }
 
@@ -34,37 +34,22 @@ namespace Core
 
             foreach (int reqEntity in _reqFilter)
             {
-                var req = _pool.BuyEnhancementRequest.Get(reqEntity);
+                BuyEnhancementRequest req = _pool.BuyEnhancementRequest.Get(reqEntity);
 
                 int businessEntity = FindBusinessByIndex(req.BusinessIndex);
                 if (businessEntity == Index.Default)
-                {
-                    _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue;
-                }
 
                 ref Business business = ref _pool.Business.Get(businessEntity);
 
                 // bounds and already purchased check
-                if (req.EnhancementIndex < 0 || req.EnhancementIndex >= _config.Businesses.Length)
-                {
-                    _pool.BuyEnhancementRequest.Del(reqEntity);
+                EnhancementConfigData[] enhancements = _config.Businesses[business.Index].Enhancements;
+                if (req.EnhancementIndex < 0 || req.EnhancementIndex >= enhancements.Length)
                     continue;
-                }
-
-                var enhancements = _config.Businesses[business.Index].Enhancements;
-                if (req.EnhancementIndex >= enhancements.Length)
-                {
-                    _pool.BuyEnhancementRequest.Del(reqEntity);
-                    continue;
-                }
 
                 int mask = 1 << req.EnhancementIndex;
                 if ((business.PurchasedEnhancementsMask & mask) != 0)
-                {
-                    _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue; // already purchased
-                }
 
                 int cost = enhancements[req.EnhancementIndex].Cost;
                 float addMultiplier = Mathf.Max(0f, enhancements[req.EnhancementIndex].MultiplyFactor);
@@ -74,9 +59,10 @@ namespace Core
                     balance.Amount -= cost;
                     business.PurchasedEnhancementsMask |= mask;
                     business.EnhancementsMultiplierSum += addMultiplier;
-                }
 
-                _pool.BuyEnhancementRequest.Del(reqEntity);
+                    _pool.BalanceChangedEvent.NewEntity(out _);
+                    _pool.BusinessViewRefreshEvent.NewEntity(out _).BusinessIndex = business.Index;
+                }
             }
         }
 

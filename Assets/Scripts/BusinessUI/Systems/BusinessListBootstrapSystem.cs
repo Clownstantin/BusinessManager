@@ -28,26 +28,27 @@ namespace Core.UI
                 BusinessView view = Object.Instantiate(_config.BusinessViewPrefab, container);
                 view.NameText.text = _config.Businesses[i].NamesData.Name;
 
-                BuyLevelRequest buyLevelReq = new() { BusinessIndex = i };
-                BuyEnhancementRequest buyEnhancmentReq = new() { BusinessIndex = i, EnhancementIndex = 0 };
+                int businessIndex = i;
+                BuyLevelRequest buyLevelReq = new() { BusinessIndex = businessIndex };
 
                 view.BuyLevelButton.onClick.AddListener(() => pool.BuyLevelRequest.NewEntity(out _) = buyLevelReq);
-                view.FirstEnhancementButton.onClick.AddListener(() => pool.BuyEnhancementRequest.NewEntity(out _) = buyEnhancmentReq);
-                view.SecondEnhancementButton.onClick.AddListener(() =>
-                {
-                    buyEnhancmentReq.EnhancementIndex = 1;
-                    pool.BuyEnhancementRequest.NewEntity(out _) = buyEnhancmentReq;
-                });
+                view.FirstEnhancementButton.onClick.AddListener(() => CreateEnhancementRequest(new() { BusinessIndex = businessIndex, EnhancementIndex = 0 }));
+                view.SecondEnhancementButton.onClick.AddListener(() => CreateEnhancementRequest(new() { BusinessIndex = businessIndex, EnhancementIndex = 1 }));
 
-                foreach (int e in businessFilter)
+                foreach (int businessEntity in businessFilter)
                 {
-                    if (pool.Business.Get(e).Index == i)
+                    int index = pool.Business.Get(businessEntity).Index;
+                    if (index == i)
                     {
-                        pool.BusinessView.Add(e).Value = view;
+                        pool.BusinessView.Add(businessEntity).Value = view;
+                        pool.BusinessViewRefreshEvent.NewEntity(out _).BusinessIndex = index;
                         break;
                     }
                 }
             }
+
+            void CreateEnhancementRequest(BuyEnhancementRequest enhancementReq)
+            => pool.BuyEnhancementRequest.NewEntity(out _) = enhancementReq;
         }
     }
 }

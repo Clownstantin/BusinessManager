@@ -9,7 +9,8 @@ namespace Core
 
         public void Init(IEcsSystems systems, ScriptableObject data = null)
         {
-            systems.Add(new CreateBalanceSystem());
+            systems.Add(new CreateBalanceSystem())
+                   .Add(new ApplyPayoutSystem());
         }
     }
 }

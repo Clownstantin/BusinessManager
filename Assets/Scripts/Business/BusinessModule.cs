@@ -13,9 +13,10 @@ namespace Core
 
             systems.Add(new CreateBusinessSystem(businessData))
                    .Add(new IncomeProgressSystem())
-                   .Add(new ApplyPayoutSystem())
                    .Add(new BuyLevelSystem())
-                   .Add(new BuyEnhancementSystem(businessData));
+                   .Add(new BuyEnhancementSystem(businessData))
+                   .DelHere<BuyLevelRequest>()
+                   .DelHere<BuyEnhancementRequest>();
         }
     }
 }

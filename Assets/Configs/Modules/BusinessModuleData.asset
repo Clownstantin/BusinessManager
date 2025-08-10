@@ -19,43 +19,43 @@ MonoBehaviour:
     <IncomeDelay>k__BackingField: 3
     <Enhancements>k__BackingField:
     - <Cost>k__BackingField: 50
-      <MultiplyFactor>k__BackingField: 1.5
+      <MultiplyFactor>k__BackingField: 0.5
     - <Cost>k__BackingField: 400
-      <MultiplyFactor>k__BackingField: 2
+      <MultiplyFactor>k__BackingField: 1
   - <NamesData>k__BackingField: {fileID: 11400000, guid: 16612ab43344eaa4aa02f1fd5f826b22, type: 2}
     <BaseCost>k__BackingField: 40
     <BaseIncome>k__BackingField: 40
     <IncomeDelay>k__BackingField: 6
     <Enhancements>k__BackingField:
     - <Cost>k__BackingField: 1200
-      <MultiplyFactor>k__BackingField: 2
+      <MultiplyFactor>k__BackingField: 1
     - <Cost>k__BackingField: 4000
-      <MultiplyFactor>k__BackingField: 4
+      <MultiplyFactor>k__BackingField: 2
   - <NamesData>k__BackingField: {fileID: 11400000, guid: 765d30a6f3bbea745b694ce7325979f2, type: 2}
     <BaseCost>k__BackingField: 200
     <BaseIncome>k__BackingField: 200
     <IncomeDelay>k__BackingField: 10
     <Enhancements>k__BackingField:
     - <Cost>k__BackingField: 6000
-      <MultiplyFactor>k__BackingField: 2
+      <MultiplyFactor>k__BackingField: 1
     - <Cost>k__BackingField: 20000
-      <MultiplyFactor>k__BackingField: 2.5
+      <MultiplyFactor>k__BackingField: 1.5
   - <NamesData>k__BackingField: {fileID: 11400000, guid: 379e069e10cf4734dab1bdd4a5209b6a, type: 2}
     <BaseCost>k__BackingField: 1000
     <BaseIncome>k__BackingField: 1000
     <IncomeDelay>k__BackingField: 17
     <Enhancements>k__BackingField:
     - <Cost>k__BackingField: 15000
-      <MultiplyFactor>k__BackingField: 2
+      <MultiplyFactor>k__BackingField: 1
     - <Cost>k__BackingField: 50000
-      <MultiplyFactor>k__BackingField: 4
+      <MultiplyFactor>k__BackingField: 2
   - <NamesData>k__BackingField: {fileID: 11400000, guid: df93d59d401ae18489a33984678acb87, type: 2}
     <BaseCost>k__BackingField: 5000
     <BaseIncome>k__BackingField: 5000
     <IncomeDelay>k__BackingField: 30
     <Enhancements>k__BackingField:
     - <Cost>k__BackingField: 100000
-      <MultiplyFactor>k__BackingField: 4
+      <MultiplyFactor>k__BackingField: 2
     - <Cost>k__BackingField: 500000
-      <MultiplyFactor>k__BackingField: 6
+      <MultiplyFactor>k__BackingField: 4
   <BusinessViewPrefab>k__BackingField: {fileID: 7385978751418092454, guid: 91e3c4e5e9997c84fafc77920e04d2f3, type: 3}

@@ -85,7 +85,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -156,12 +156,12 @@ MonoBehaviour:
   <LevelText>k__BackingField: {fileID: 19255331722178716}
   <IncomeText>k__BackingField: {fileID: 307723048239000495}
   <BuyLevelButtonText>k__BackingField: {fileID: 5103947519728790165}
-  <FirstEnhanceButtonText>k__BackingField: {fileID: 3857399314682311701}
-  <SecondEnhanceButtonText>k__BackingField: {fileID: 5900397361400059655}
+  <FirstEnhanceButtonText>k__BackingField: {fileID: 5900397361400059655}
+  <SecondEnhanceButtonText>k__BackingField: {fileID: 3857399314682311701}
   <ProgressSlider>k__BackingField: {fileID: 5940151090585735411}
   <BuyLevelButton>k__BackingField: {fileID: 6001554269676490660}
-  <FirstEnhancementButton>k__BackingField: {fileID: 5224636049149255989}
-  <SecondEnhancementButton>k__BackingField: {fileID: 3236947732860207655}
+  <FirstEnhancementButton>k__BackingField: {fileID: 3236947732860207655}
+  <SecondEnhancementButton>k__BackingField: {fileID: 5224636049149255989}
 --- !u!114 &3082703187431376211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,8 +860,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 350602846552180538}
   - {fileID: 6969258233813115944}
+  - {fileID: 350602846552180538}
   m_Father: {fileID: 1292565121375853791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

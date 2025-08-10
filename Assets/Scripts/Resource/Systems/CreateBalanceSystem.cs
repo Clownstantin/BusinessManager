@@ -8,7 +8,7 @@ namespace Core
         {
             EcsWorld world = systems.GetWorld();
             PoolContainer pool = systems.GetShared<SharedData>().PoolContainer;
-            var balanceFilter = world.Filter<Balance>().End();
+            EcsFilter balanceFilter = world.Filter<Balance>().End();
 
             foreach (int _ in balanceFilter)
                 return;

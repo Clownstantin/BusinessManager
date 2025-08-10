@@ -11,13 +11,10 @@ namespace Core
         public float BaseIncome;
         public float IncomeDelay;
 
-        // 0..1 progress of current income cycle
-        public float Progress01;
-
-        // Sum of purchased enhancements multipliers in [0..] (e.g. 0.2f for +20%)
+        public float Progress;
         public float EnhancementsMultiplierSum;
 
-        // Bit mask of purchased enhancements (bit i -> enhancement i purchased)
+        // Bit mask of purchased enhancements 
         public int PurchasedEnhancementsMask;
     }
 
