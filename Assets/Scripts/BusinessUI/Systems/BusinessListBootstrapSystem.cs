@@ -7,7 +7,7 @@ namespace Core.UI
     {
         private readonly BusinessModuleData _config;
 
-        public BusinessListBootstrapSystem(BusinessModuleData config) { _config = config; }
+        public BusinessListBootstrapSystem(BusinessModuleData config) => _config = config;
 
         public void Init(IEcsSystems systems)
         {
@@ -25,26 +25,23 @@ namespace Core.UI
 
             for (int i = 0; i < _config.Businesses.Length; i++)
             {
-                var view = Object.Instantiate(_config.BusinessViewPrefab, container);
-                view.Setup(i);
-                view.SetName(_config.Businesses[i].NamesData != null ? _config.Businesses[i].NamesData.Name : $"Business {i + 1}");
+                BusinessView view = Object.Instantiate(_config.BusinessViewPrefab, container);
+                view.NameText.text = _config.Businesses[i].NamesData.Name;
 
-                int businessIndex = i;
-                BuyLevelRequest buyLevelReq = new() { BusinessIndex = businessIndex };
-                BuyEnhancementRequest buyEnhancmentReq = new() { BusinessIndex = businessIndex, EnhancementIndex = 0 };
+                BuyLevelRequest buyLevelReq = new() { BusinessIndex = i };
+                BuyEnhancementRequest buyEnhancmentReq = new() { BusinessIndex = i, EnhancementIndex = 0 };
 
                 view.BuyLevelButton.onClick.AddListener(() => pool.BuyLevelRequest.NewEntity(out _) = buyLevelReq);
-                view.BuyEnh1Button.onClick.AddListener(() => pool.BuyEnhancementRequest.NewEntity(out _) = buyEnhancmentReq);
-                view.BuyEnh2Button.onClick.AddListener(() =>
+                view.FirstEnhancementButton.onClick.AddListener(() => pool.BuyEnhancementRequest.NewEntity(out _) = buyEnhancmentReq);
+                view.SecondEnhancementButton.onClick.AddListener(() =>
                 {
                     buyEnhancmentReq.EnhancementIndex = 1;
                     pool.BuyEnhancementRequest.NewEntity(out _) = buyEnhancmentReq;
                 });
 
-                // Attach link to corresponding business entity via generic MonoLink
                 foreach (int e in businessFilter)
                 {
-                    if (pool.Business.Get(e).Index == businessIndex)
+                    if (pool.Business.Get(e).Index == i)
                     {
                         pool.BusinessView.Add(e).Value = view;
                         break;

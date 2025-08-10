@@ -13,7 +13,7 @@ namespace Core
             foreach (int _ in balanceFilter)
                 return;
 
-            pool.Balance.NewEntity(out _);
+            pool.Balance.NewEntity(out _).Amount = 150f;
         }
     }
 }

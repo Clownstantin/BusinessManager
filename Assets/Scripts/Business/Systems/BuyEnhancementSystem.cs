@@ -26,12 +26,8 @@ namespace Core
 
         public void Run(IEcsSystems systems)
         {
-            if (_config == null)
-                return;
-
-            int balanceEntity = -1;
-            foreach (var e in _balanceFilter) { balanceEntity = e; break; }
-            if (balanceEntity == -1)
+            int balanceEntity = _balanceFilter.GetFirstEntity();
+            if (balanceEntity == Index.Default)
                 return; // no balance yet
 
             ref Balance balance = ref _pool.Balance.Get(balanceEntity);
@@ -41,7 +37,7 @@ namespace Core
                 var req = _pool.BuyEnhancementRequest.Get(reqEntity);
 
                 int businessEntity = FindBusinessByIndex(req.BusinessIndex);
-                if (businessEntity == -1)
+                if (businessEntity == Index.Default)
                 {
                     _pool.BuyEnhancementRequest.Del(reqEntity);
                     continue;
@@ -91,7 +87,7 @@ namespace Core
                 if (_pool.Business.Get(e).Index == index)
                     return e;
             }
-            return -1;
+            return Index.Default;
         }
     }
 }

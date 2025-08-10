@@ -58,3 +58,4 @@ MonoBehaviour:
       <MultiplyFactor>k__BackingField: 4
     - <Cost>k__BackingField: 500000
       <MultiplyFactor>k__BackingField: 6
+  <BusinessViewPrefab>k__BackingField: {fileID: 7385978751418092454, guid: 91e3c4e5e9997c84fafc77920e04d2f3, type: 3}

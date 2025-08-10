@@ -1,4 +1,5 @@
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Core
 {
@@ -34,6 +35,7 @@ namespace Core
 
                 // Find business by index (linear; for small N ok; otherwise map index->entity)
                 int businessEntity = FindBusinessByIndex(index);
+                Debug.Log($"BuyLevel {businessEntity}");
                 if (businessEntity == -1)
                 {
                     _pool.BuyLevelRequest.Del(reqEntity);

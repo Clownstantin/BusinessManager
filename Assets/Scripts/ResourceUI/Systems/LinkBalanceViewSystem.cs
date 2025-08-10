@@ -14,9 +14,11 @@ namespace Core.UI
 
             int balanceEntity = balanceFilter.GetFirstEntity();
             int mainViewEntity = mainViewFilter.GetFirstEntity();
-
+            float amount = pool.Balance.Get(balanceEntity).Amount;
             TextMeshProUGUI balanceText = pool.MainWindowView.Get(mainViewEntity).Value.BalanceText;
+
             pool.TextView.Add(balanceEntity).Value = balanceText;
+            balanceText.text = $"Баланс: {amount}$";
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Core
         {
             foreach (int entity in filter)
                 return entity;
-            return -1;
+            return Index.Default;
         }
     }
 }

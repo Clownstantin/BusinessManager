@@ -16,7 +16,7 @@ namespace Core.UI
         public void Init(IEcsSystems systems)
         {
             _world = systems.GetWorld();
-            _businessFilter = _world.Filter<Business>().End();
+            _businessFilter = _world.Filter<Business>().Inc<MonoLink<BusinessView>>().End();
             _pool = systems.GetShared<SharedData>().PoolContainer;
         }
 
@@ -24,33 +24,35 @@ namespace Core.UI
         {
             foreach (int e in _businessFilter)
             {
-                ref var b = ref _pool.Business.Get(e);
-                if (!_pool.BusinessView.Has(e))
-                    continue;
-
-                var view = _pool.BusinessView.Get(e).Value;
+                ref Business business = ref _pool.Business.Get(e);
+                BusinessView view = _pool.BusinessView.Get(e).Value;
                 if (view == null)
                     continue;
 
-                float multiplier = 1f + Mathf.Max(0f, b.EnhancementsMultiplierSum);
-                float income = b.Level * b.BaseIncome * multiplier;
-                float levelPrice = (b.Level + 1) * b.BaseCost;
+                float multiplier = 1f + Mathf.Max(0f, business.EnhancementsMultiplierSum);
+                float income = business.Level * business.BaseIncome * multiplier;
+                float levelPrice = (business.Level + 1) * business.BaseCost;
 
-                view.SetLevel(b.Level);
-                view.SetIncome(income);
-                view.SetProgress01(b.Progress01);
-                view.SetLevelPrice(levelPrice);
+                view.LevelText.text = $"LVL\n{business.Level}";
+                view.IncomeText.text = $"Доход\n{income}$";
+                view.ProgressSlider.value = Mathf.Clamp01(business.Progress01);
+                view.BuyLevelButtonText.text = $"LVL UP\n{GetPriceText(levelPrice)}";
 
-                if (_config != null && _config.Businesses != null && b.Index < _config.Businesses.Length)
+                BusinessConfigData businessData = _config.Businesses[business.Index];
+                EnhancementConfigData[] enh = businessData.Enhancements;
+                string[] enhancementNames = businessData.NamesData.Enhancements;
+
+                if (enh.Length == enhancementNames.Length)
                 {
-                    var enh = _config.Businesses[b.Index].Enhancements;
-                    if (enh != null && enh.Length > 0)
-                    {
-                        view.SetEnh1Price(enh.Length > 0 ? enh[0].Cost : 0);
-                        view.SetEnh2Price(enh.Length > 1 ? enh[1].Cost : 0);
-                    }
+                    view.FirstEnhanceButtonText.text = GetEnhancementText(enh[0], enhancementNames[0]);
+                    view.SecondEnhanceButtonText.text = GetEnhancementText(enh[1], enhancementNames[1]);
                 }
             }
+
+            static string GetPriceText(float price) => $"Цена: {price}$";
+
+            static string GetEnhancementText(EnhancementConfigData enh, string enhancementName)
+            => $"{enhancementName}\nДоход: +{enh.MultiplyFactor}%\n {GetPriceText(enh.Cost)}";
         }
     }
 }
