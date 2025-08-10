@@ -52,7 +52,7 @@ namespace Core.UI
                     float levelPrice = (business.Level + 1) * business.BaseCost;
 
                     view.LevelText.text = $"LVL\n{business.Level}";
-                    view.IncomeText.text = $"Income\n{income}$";
+                    view.IncomeText.text = $"Доход\n{income}$";
                     view.BuyLevelButtonText.text = $"LVL UP\n{GetPriceText(levelPrice)}";
 
                     BusinessConfigData businessData = _config.Businesses[business.Index];
@@ -78,10 +78,10 @@ namespace Core.UI
                 }
             }
 
-            static string GetPriceText(in float price) => $"Price: {price}$";
+            static string GetPriceText(in float price) => $"Цена: {price}$";
 
             static string GetEnhancementText(in EnhancementConfigData enh, string enhancementName)
-            => $"{enhancementName}\nIncome: +{enh.MultiplyFactor * 100}%\n {GetPriceText(enh.Cost)}";
+            => $"{enhancementName}\nДоход: +{enh.MultiplyFactor * 100}%\n {GetPriceText(enh.Cost)}";
         }
     }
 }

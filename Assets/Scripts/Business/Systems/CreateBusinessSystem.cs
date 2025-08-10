@@ -19,17 +19,20 @@ namespace Core
 
             for (int i = 0; i < businesses.Length; i++)
             {
-                BusinessConfigData cfg = businesses[i];
-                ref Business business = ref pool.Business.NewEntity(out _);
+                BusinessConfigData configData = businesses[i];
+                ref Business business = ref pool.Business.NewEntity(out int entity);
+                bool isFirst = i == 0;
 
                 business.Index = i;
-                business.Level = 0;
-                business.BaseCost = cfg.BaseCost;
-                business.BaseIncome = cfg.BaseIncome;
-                business.IncomeDelay = Mathf.Max(0.0001f, cfg.IncomeDelay);
+                business.Level = isFirst ? 1 : 0;
+                business.BaseCost = configData.BaseCost;
+                business.BaseIncome = configData.BaseIncome;
+                business.IncomeDelay = Mathf.Max(0.0001f, configData.IncomeDelay);
                 business.Progress = 0f;
                 business.EnhancementsMultiplierSum = 0f;
                 business.PurchasedEnhancementsMask = 0;
+
+                pool.Bought.ConditionAdd(entity, isFirst);
             }
         }
     }
